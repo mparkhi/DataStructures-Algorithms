@@ -28,4 +28,23 @@ public class AdjacencyListGraph {
         adjacencyList.get(source).remove((Integer) destination);
         adjacencyList.get(destination).remove((Integer) source);
     }
+    public void DFSIterative(int startVertex){
+        Set<Integer> visited = new HashSet<>();
+        Stack<Integer> stack = new Stack<>();
+        stack.push(startVertex);
+        // Keep traversing until the stack is empty
+        while(!stack.isEmpty()){
+            // Get an element from the stack and mark as visited
+            int currentVertex = stack.pop();
+            System.out.println(currentVertex + " ");
+            visited.add(currentVertex);
+
+            // Add all the unvisited neighbors of the current vertex to the stack
+            for(int neighbor : adjacencyList.getOrDefault(currentVertex, Collections.emptyList())){
+                if(!visited.contains(neighbor)){
+                    stack.push(neighbor);
+                }
+            }
+        }
+    }
 }
