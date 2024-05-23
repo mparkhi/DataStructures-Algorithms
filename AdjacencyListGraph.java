@@ -67,5 +67,27 @@ public class AdjacencyListGraph {
             if(!visited.contains(neighbor))
                 DFSRecursive(neighbor, visited);
     }
+    /** BFS - Iterative
+     * TC - O(V + E)
+     * SC - O(V)
+     */
+    public void BFSIterative(int startVertex){
+        Set<Integer> visited = new HashSet<>();
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(startVertex);
+        visited.add(startVertex);
+        // keep traversing until the queue is empty
+        while(!queue.isEmpty()){
+            int currentVertex = queue.poll();
+            System.out.println(currentVertex + " ");
+            // add all the neighbors to the queue
+            for(int neighbor : adjacencyList.getOrDefault(currentVertex, Collections.emptyList()))
+                if(!visited.contains(neighbor)) {
+                    queue.add(neighbor);
+                    visited.add(neighbor);
+                }
+        }
+    }
+}
     
 }
