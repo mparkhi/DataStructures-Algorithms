@@ -28,6 +28,11 @@ public class AdjacencyListGraph {
         adjacencyList.get(source).remove((Integer) destination);
         adjacencyList.get(destination).remove((Integer) source);
     }
+    
+    /** DFS Iterative
+    // TC -> O(V + E)
+    // SC -> O(V)
+     */
     public void DFSIterative(int startVertex){
         Set<Integer> visited = new HashSet<>();
         Stack<Integer> stack = new Stack<>();
@@ -47,4 +52,20 @@ public class AdjacencyListGraph {
             }
         }
     }
+        public void DFS(int startVertex){
+        Set <Integer> visited = new HashSet<>();
+        DFSRecursive(startVertex, visited);
+    }
+    public void DFSRecursive(int vertex, Set<Integer> visited){
+        // Add the vertex to the visited set
+        visited.add(vertex);
+        System.out.println(vertex + " ");
+
+        // Iterate through each neighbor of the vertex
+        for (int neighbor : adjacencyList.getOrDefault(vertex, Collections.emptyList()))
+            // if not visited, perform DFS on the vertex
+            if(!visited.contains(neighbor))
+                DFSRecursive(neighbor, visited);
+    }
+    
 }
